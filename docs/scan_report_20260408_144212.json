@@ -1,0 +1,102 @@
+{
+  "session_id": "20260408_144212",
+  "started_at": "2026-04-08T14:42:12.220205",
+  "ended_at": "2026-04-08T14:46:28.118205",
+  "duration_seconds": 255.898,
+  "summary": {
+    "total_files": 8679,
+    "total_size_mb": 362.37,
+    "immutables_found": 84,
+    "protected_files": 6160,
+    "movable_candidates": 2376,
+    "unclassified": 59,
+    "duplicates_found": 0,
+    "unknown_category": 8679
+  },
+  "by_category": {
+    "unknown": 8679
+  },
+  "by_safety": {
+    "PROTECTED": 6160,
+    "MOVABLE": 2376,
+    "IMMUTABLE": 84,
+    "UNCLASSIFIED": 59
+  },
+  "top_15_extensions": {
+    ".md": 4244,
+    ".json": 1953,
+    ".sh": 866,
+    ".py": 863,
+    ".txt": 492,
+    ".ts": 84,
+    ".log": 56,
+    ".html": 48,
+    ".tsx": 18,
+    ".ps1": 14,
+    "(no ext)": 7,
+    ".js": 7,
+    ".bat": 5,
+    ".pdf": 5,
+    ".toml": 5
+  },
+  "movable_by_extension": {
+    ".md": 1348,
+    ".json": 484,
+    ".sh": 272,
+    ".py": 126,
+    ".txt": 110,
+    ".ts": 24,
+    ".html": 12
+  },
+  "notes": [
+    "Scan roots: ['C:\\\\AI_STATION', 'C:\\\\Users\\\\amirk\\\\.kimi', 'C:/Users/amirk/Obsidian Vault', 'C:/Users/amirk/pc-focus', 'C:/Users/amirk/.cline', 'C:/Users/amirk/.claude', 'C:/Users/amirk/.openclaw', 'C:/Users/amirk/.agents']",
+    "Index extensions: 33 types"
+  ],
+  "errors": [
+    "Scan root not found: C:/Users/amirk/Obsidian Vault"
+  ],
+  "movable_sample": [
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\eval-viewer\\viewer.html",
+    "C:\\AI_STATION\\claude_config\\.claude\\.credentials.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\settings.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\settings.local.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\.credentials.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\settings.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\.claude\\settings.local.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\blocklist.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\plugins\\known_marketplaces.json"
+  ],
+  "protected_sample": [
+    "C:\\AI_STATION\\hub\\agents\\scripts\\boot_gemma4_e4b_hub.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_26b_fixed.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_e4b.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_e4b_fixed.bat",
+    "C:\\AI_STATION\\hub\\dashboard\\app\\globals.css",
+    "C:\\AI_STATION\\hub\\agents\\claude code\\dashboard\\app\\globals.css",
+    "C:\\AI_STATION\\filemind\\ui\\style.css",
+    "C:\\AI_STATION\\filemind\\ui\\src\\style.css",
+    "C:\\AI_STATION\\filemind\\.env",
+    "C:\\AI_STATION\\filemind-deep\\.env",
+    "C:\\AI_STATION\\hub\\bridge\\.env",
+    "C:\\AI_STATION\\hub\\memmachine\\.env",
+    "C:\\AI_STATION\\hub\\bridge\\cline_bridge\\.env",
+    "C:\\AI_STATION\\hub\\agents\\.codeium\\windsurf\\code_tracker\\active\\no_repo\\5a8658490d462a8e3fe0a5549a348266_api.env",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\canvas\\index.html",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\.openclaw\\canvas\\index.html",
+    "C:\\AI_STATION\\hub\\agents\\.codeium\\windsurf\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.claude\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html"
+  ]
+}

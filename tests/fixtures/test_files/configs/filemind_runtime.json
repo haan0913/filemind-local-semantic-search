@@ -1,0 +1,15 @@
+{
+  "runtime": "owl-agent-venv",
+  "python": "C:/Users/amirk/.kimi/owl-agent/.venv/Scripts/python.exe",
+  "scan_roots": [
+    "C:/AI_STATION",
+    "C:/Users/amirk/.kimi"
+  ],
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_device": "cuda",
+  "classification_model": "gemma4-e4b-json",
+  "openrouter_as_primary": true,
+  "nightly_schedule": "02:00",
+  "memmachine_enabled": false,
+  "notes": "Use owl-agent venv — only env with CUDA torch + FlagEmbedding"
+}

@@ -1,0 +1,41 @@
+# FileMind — Python Dependencies
+# Install: pip install -r requirements.txt
+# Updated: 2026-04-08 — Replaced FlagEmbedding with sentence-transformers
+
+# ── Vector DB ──────────────────────────────────────────────────────────────
+qdrant-client>=1.10.0
+rank-bm25>=0.2.2
+
+# ── Content Extraction ─────────────────────────────────────────────────────
+pymupdf>=1.23.0
+python-docx>=1.1.0
+openpyxl>=3.1.0
+python-pptx>=0.6.23
+extract-msg>=0.48.0
+
+# ── Embeddings ─────────────────────────────────────────────────────────────
+# NOTE: FlagEmbedding removed — fails on Python 3.14 (C compilation, missing zlib.h)
+# Replaced with sentence-transformers (pure PyTorch, no native compilation)
+sentence-transformers>=4.0.0
+torch>=2.1.0
+
+# ── Classification ─────────────────────────────────────────────────────────
+ollama>=0.1.0
+requests>=2.31.0
+
+# ── File Watching ──────────────────────────────────────────────────────────
+watchdog>=3.0.0
+
+# ── Web UI ─────────────────────────────────────────────────────────────────
+gradio>=6.0.0
+
+# ── Agent Framework (Phase 1+) ─────────────────────────────────────────────
+smolagents>=1.24.0
+
+# ── Secure Delegation (Phase 3+) ───────────────────────────────────────────
+# litellm>=1.0.0     # Uncomment when Phase 3 begins
+
+# ── Utilities ──────────────────────────────────────────────────────────────
+pyyaml>=6.0
+tqdm>=4.66.0
+pydantic>=2.0.0            # Tool interface definitions, validation (Phase 1+)

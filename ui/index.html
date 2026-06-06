@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FileMind Intelligence v2</title>
+    <!-- Premium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Libraries for Markdown Rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  </head>
+  <body>
+    <!-- Animated Gradient Background Mesh -->
+    <div class="bg-mesh">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div id="app">
+      <!-- Sidebar -->
+      <nav class="sidebar glass-panel">
+        <div class="logo">
+          <div class="logo-icon glow-pulse"></div>
+          <h2>FileMind</h2>
+        </div>
+        <ul class="nav-links">
+          <li class="active nav-item" data-target="chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> 
+            <span>Assistant</span>
+          </li>
+          <li class="nav-item" data-target="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
+            <span>Deep Search</span>
+          </li>
+          <li class="nav-item" data-target="explorer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg> 
+            <span>Neural Explorer</span>
+          </li>
+        </ul>
+        <div class="sys-status glass-panel">
+            <div class="status-dot"></div>
+            <span>Core Active</span>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="content-wrapper">
+        
+        <!-- Chatbot Panel -->
+        <section id="chat" class="panel active">
+          <header class="hero-header">
+            <div class="title-glow">
+              <h1 class="gradient-text">Intelligence OS</h1>
+            </div>
+            <p>Connected to <strong>Gemma-4</strong> via Fast RAG Pipeline. Semantic context enabled.</p>
+          </header>
+          <div class="chat-container glass-panel">
+            <div id="chat-messages" class="messages-area custom-scrollbar">
+              <div class="message system">
+                <div class="avatar system-avatar glow-pulse"></div>
+                <div class="bubble outline">System active. I have access to your codebase, memories, and personal context. How can I help you today?</div>
+              </div>
+            </div>
+            <div class="chat-input-wrapper">
+              <div class="input-glow-ring">
+                <input type="text" id="chat-input" placeholder="Ask anything about your files..." autocomplete="off"/>
+              </div>
+              <button id="chat-send" class="btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Deep Search Panel -->
+        <section id="search" class="panel">
+          <header class="hero-header">
+            <div class="title-glow">
+              <h1 class="gradient-text">Hybrid Engine</h1>
+            </div>
+            <div class="search-bar-wrapper input-glow-ring">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="search-input" placeholder="Search conceptually (e.g. 'auth middleware' or 'last year budget')" autocomplete="off"/>
+              <button id="search-btn" class="btn-primary">Search</button>
+            </div>
+            <div class="filters">
+                <label class="filter-chip glass-button"><input type="checkbox" class="hidden-cb" id="filter-code" value=".py,.js,.ts"> <span class="chip-label">Code</span></label>
+                <label class="filter-chip glass-button"><input type="checkbox" class="hidden-cb" id="filter-docs" value=".md,.txt,.pdf,.json"> <span class="chip-label">Docs & Notes</span></label>
+                <label class="filter-hyde glass-button"><input type="checkbox" class="hidden-cb" id="use-hyde"> <span class="chip-label">LLM HyDE</span></label>
+            </div>
+          </header>
+          <div id="search-results" class="results-grid custom-scrollbar">
+              <div class="empty-state">
+                  <div class="empty-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  </div>
+                  <p>Awaiting Query...</p>
+              </div>
+          </div>
+        </section>
+
+        <!-- Explorer Panel -->
+        <section id="explorer" class="panel">
+          <header class="hero-header">
+            <div class="title-glow">
+              <h1 class="gradient-text">Neural Explorer</h1>
+            </div>
+            <p>Live memory representation across all indexed agents and workspaces.</p>
+          </header>
+          <div class="explorer-layout">
+            <div class="tree-view glass-panel custom-scrollbar" id="file-tree">
+                <!-- Populated via API -->
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="file-preview glass-panel custom-scrollbar" id="preview-modal">
+                <div class="empty-state">
+                  <div class="empty-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <h3>Select a file to preview</h3>
+                </div>
+                <div id="preview-content" class="markdown-body" style="display:none;"></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

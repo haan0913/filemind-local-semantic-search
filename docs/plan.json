@@ -1,0 +1,425 @@
+{
+  "project": "FileMind",
+  "version": "2.0",
+  "updated_at": "2026-04-08T16:15:00-04:00",
+  "updated_by": "Qwen Code",
+
+  "state": {
+    "phase": "POST_SCAN_ASSESSMENT",
+    "active_rebuild": false,
+    "rebuild_completed": "2026-04-08T13:38:07-04:00",
+    "rebuild_type": "smart_chunking_full_rechunk",
+    "rebuild_result": "3877 files, 5896 chunks, 0 errors",
+    "pre_scan_backup": "vault/index_backup_20260408_143450",
+    "pre_scan_backup_size_mb": 81.66,
+    "full_scan_completed": "2026-04-08T14:46:28",
+    "full_scan_duration_seconds": 255.9,
+    "full_scan_files": 8679,
+    "full_scan_size_mb": 362.37,
+    "safety_classification_coverage_pct": 99.3,
+    "knowledge_report": "docs/CONSOLIDATED_KNOWLEDGE_REPORT.md",
+    "skip_dirs_audit_completed": "2026-04-08T16:11:00-04:00",
+    "reindex_completed": "2026-04-08T16:11:00-04:00",
+    "catalog_total_files": 4804,
+    "catalog_categories": {"config": 1638, "documentation": 1218, "code": 1015, "ai_project": 647, "research": 107, "personal": 92, "unknown": 79, "finance": 5, "archive": 3},
+    "hierarchical_scanning_architecture_saved": "docs/HIERARCHICAL_SCANNING_ARCHITECTURE.md"
+  },
+
+  "reminders": [
+    {
+      "id": "R-001",
+      "text": "After smart chunking rebuild completes, switch classification model from gemma4-e4b-json to gemma3:4b",
+      "trigger": "rebuild_complete",
+      "steps": [
+        "ollama pull gemma3:4b",
+        "config.py CLASSIFICATION_MODEL = 'gemma3:4b'",
+        "Run classification on unknown files to verify",
+        "Keep gemma4-e4b as fallback"
+      ],
+      "status": "DEFERRED"
+    },
+    {
+      "id": "R-002",
+      "text": "Next session: continue with remaining 5 tasks (MOVABLES decision, Obsidian Vault, unclassified files, hierarchical scanning research, sparse vectors research)",
+      "trigger": "session_start",
+      "status": "ACTIVE"
+    }
+  ],
+
+  "risks": [
+    {
+      "id": "RISK-001",
+      "severity": "CRITICAL",
+      "description": "Rebuild crash mid-process = lost chunks with no recovery. Backup exists at vault/backups/index_20260408_124500_preSmartRebuild",
+      "mitigation": "If rebuild fails, restore from backup and investigate root cause before retrying",
+      "active": true
+    },
+    {
+      "id": "RISK-002",
+      "severity": "MEDIUM",
+      "description": "200K content_summary limit increase only applies to NEW files. Existing catalog has 50K summaries.",
+      "mitigation": "Force rebuild re-extracts all files with new limit",
+      "active": false
+    },
+    {
+      "id": "RISK-003",
+      "severity": "LOW",
+      "description": "gemma3:4b may classify files differently than gemma4-e4b-json",
+      "mitigation": "Run classification on unknown files first, compare results before switching default",
+      "active": false
+    }
+  ],
+
+  "tasks": [
+    {
+      "id": "T-NEXT-001",
+      "description": "MOVABLES decision — present plan for 2,376 files (archive/delete/reorganize). Main sources: vault backups (6 session snapshots), claude_config (backup copy), nested plugin dirs, subagent metadata",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": [],
+      "notes": "User needs to decide: archive to cold storage, delete duplicates, or reorganize. Scan report at docs/scan_report_20260408_144212.json has full MOVABLES list."
+    },
+    {
+      "id": "T-NEXT-002",
+      "description": "Fix Obsidian Vault path — locate actual path or remove from scan roots",
+      "status": "TODO",
+      "priority": "MEDIUM",
+      "dependencies": [],
+      "notes": "C:/Users/amirk/Obsidian Vault not found. Search for it or remove from SCAN_ROOTS in config.py."
+    },
+    {
+      "id": "T-NEXT-003",
+      "description": "Address 59 unclassified files — minor safety config additions",
+      "status": "TODO",
+      "priority": "LOW",
+      "dependencies": [],
+      "notes": "Edge-case paths not matching safety patterns. Add to safety_config.py whitelist."
+    },
+    {
+      "id": "T-NEXT-004",
+      "description": "Hierarchical scanning research — delegate RESEARCH_PROMPT_HIERARCHICAL_SCANNING.md to research agent",
+      "status": "TODO",
+      "priority": "MEDIUM",
+      "dependencies": [],
+      "notes": "Full 4-pass architecture already saved at docs/HIERARCHICAL_SCANNING_ARCHITECTURE.md. Delegate to research agent for validation and enhancement suggestions. Qwen should NOT research this autonomously."
+    },
+    {
+      "id": "T-NEXT-005",
+      "description": "Sparse vectors research — delegate RESEARCH_PROMPT_SPARSE_VECTORS.md to research agent",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": [],
+      "notes": "BGE-M3 sparse vector extraction returns empty dicts on sentence-transformers. Plan B: standalone BM25. Delegate to research agent."
+    },
+    {
+      "id": "T-NEXT-006",
+      "description": "Push latest code to GitHub — SKIP_DIRS fix, scanner.py improvements, .jsonl extension, HIGH_VALUE_INCLUDE_PATTERNS",
+      "status": "TODO",
+      "priority": "MEDIUM",
+      "dependencies": [],
+      "notes": "Significant changes this session: config.py, scanner.py. Commit and push to https://github.com/haan0913/filemind"
+    },
+    {
+      "id": "T-INDEX-001",
+      "description": "Audit SKIP_DIRS contents — .kimi, .claude, .cline, .openclaw, .agents contain important context (plans, conversations, memory) currently excluded from indexing",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-SCAN-001"],
+      "completed_at": "2026-04-08T16:11:00-04:00",
+      "notes": "COMPLETE. Replaced blanket .kimi skip with fine-grained SKIP_SUBDIRS patterns. Added HIGH_VALUE_INCLUDE_PATTERNS for selective rescanning. .kimi symlink/junction detection added to scanner.py. .jsonl extension added to INDEX_EXTENSIONS. config.py: 18 skip_dirs, 27 skip_subdirs, 15 high_value patterns."
+    },
+    {
+      "id": "T-INDEX-002",
+      "description": "Re-index scannable files — 8,693 files pass SKIP checks but are not in vector index",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-INDEX-001"],
+      "completed_at": "2026-04-08T16:11:00-04:00",
+      "notes": "COMPLETE. python run.py scan --full: 842 files scanned, 619 indexed, 1585 chunks created, 0 errors. Catalog grew from 3,987 to 4,804 files (+817). 20+ large session files (>500KB) skipped by MAX_FILE_SIZE limit."
+    },
+    {
+      "id": "T-CHUNK-001",
+      "description": "Smart chunking implemented (AST for Python, structure for JSON/YAML/TOML, header-based for Markdown, layout for PDF)",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": [],
+      "completed_at": "2026-04-08T12:45:00-04:00",
+      "notes": "Config flag: USE_SMART_CHUNKING = True. Fallback to fixed-size on error."
+    },
+    {
+      "id": "T-CHUNK-002",
+      "description": "Force rebuild: re-chunk all 3,838 files with smart chunking strategy",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-CHUNK-001"],
+      "completed_at": "2026-04-08T13:38:07-04:00",
+      "notes": "3,877 files processed, 5,896 chunks created, 0 errors. Phase: SEARCH_QUALITY_VERIFICATION"
+    },
+    {
+      "id": "T-DEPS-001",
+      "description": "Dependency validation system — check_deps.py validates all optional features at startup, auto-disables missing",
+      "status": "DONE",
+      "priority": "CRITICAL",
+      "dependencies": [],
+      "completed_at": "2026-04-08T13:15:00-04:00",
+      "notes": "python run.py deps to check status. Integrated into run.py and nightly.py startup."
+    },
+    {
+      "id": "T-RERANK-001",
+      "description": "Switch reranker from FlagEmbedding (not installable on Python 3.14/Windows) to sentence_transformers.CrossEncoder",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-DEPS-001"],
+      "completed_at": "2026-04-08T13:15:00-04:00",
+      "notes": "FlagReranker was NOT installed — would have crashed search. CrossEncoder verified working. ENABLE_RERANKING = False until tested."
+    },
+    {
+      "id": "T-RERANK-002",
+      "description": "Enable reranking (ENABLE_RERANKING = True) — CrossEncoder verified working, now active",
+      "status": "DONE",
+      "priority": "MEDIUM",
+      "dependencies": ["T-RERANK-001", "T-CHUNK-002"],
+      "completed_at": "2026-04-08T13:50:00-04:00",
+      "notes": "Enabled after smart chunking rebuild. ~15-25% accuracy improvement expected on technical queries."
+    },
+    {
+      "id": "T-MODEL-001",
+      "description": "Switch classification model from gemma4-e4b-json to gemma3:4b (half VRAM, better tool-calling reliability)",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-CHUNK-002"],
+      "notes": "WAIT for rebuild to complete. Steps: ollama pull gemma3:4b → config change → verify on unknown files."
+    },
+    {
+      "id": "T-SPARSE-001",
+      "description": "Research BGE-M3 sparse vector extraction alternatives — sentence-transformers returns empty dicts, killing half of hybrid search",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": [],
+      "notes": "Research prompt created: docs/RESEARCH_PROMPT_SPARSE_VECTORS.md. Plan B: standalone BM25."
+    },
+    {
+      "id": "T-SPARSE-002",
+      "description": "Implement sparse vector extraction (or BM25 fallback) based on research findings",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-SPARSE-001"],
+      "notes": "Awaiting research results. Config switch: ENABLE_SPARSE_VECTORS."
+    },
+    {
+      "id": "T-CONTENT-001",
+      "description": "Increase MAX_CONTENT_LENGTH from 50K to 200K characters per file",
+      "status": "DONE",
+      "priority": "MEDIUM",
+      "dependencies": [],
+      "completed_at": "2026-04-08T13:15:00-04:00",
+      "notes": "Existing catalog still has 50K summaries. Rebuild will re-extract with new limit."
+    },
+    {
+      "id": "T-GITHUB-001",
+      "description": "Push latest code to GitHub private repo",
+      "status": "DONE",
+      "priority": "MEDIUM",
+      "dependencies": [],
+      "completed_at": "2026-04-08T13:15:00-04:00",
+      "notes": "https://github.com/haan0913/filemind — 3 commits. README, CONTRIBUTING, all code, docs."
+    },
+    {
+      "id": "T-PLAN-001",
+      "description": "Implement dual-audience project planning system (JSON orchestration + auto-generated markdown)",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": [],
+      "completed_at": "2026-04-08T13:45:00-04:00",
+      "notes": "plan.json + planning.py + generate_report.py + plan_report.md implemented and verified."
+    },
+    {
+      "id": "T-PLAN-002",
+      "description": "Migrate SYSTEM_NOTES.md items (1-74) into unified plan.json decisions section",
+      "status": "DONE",
+      "priority": "MEDIUM",
+      "dependencies": ["T-PLAN-001"],
+      "completed_at": "2026-04-08T13:50:00-04:00",
+      "notes": "Added D-006 through D-011: local-first policy, gemma3 recommendation, 3-layer enforcement, vault exclusion, swarm architecture, smart chunking rationale."
+    },
+    {
+      "id": "T-TEST-001",
+      "description": "Verify search quality after smart chunking rebuild — results documented",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-CHUNK-002"],
+      "completed_at": "2026-04-08T13:50:00-04:00",
+      "notes": "Test results: 'FileMind configuration scan roots'→vault noise (fixed: added vault to SKIP_DIRS), 'API key authentication'→subagent noise+auth docs, 'Telegram bot setup'→SKILL.md (relevant, duplicates). Vault exclusion prevents future noise. Delta scan needed to remove existing vault chunks from index."
+    },
+    {
+      "id": "T-NOISE-001",
+      "description": "Delta scan to clean remaining index noise (old scan root artifacts)",
+      "status": "TODO",
+      "priority": "MEDIUM",
+      "dependencies": ["T-CHUNK-002"],
+      "notes": "Run python run.py scan --full after rebuild to remove old subagent JSON noise."
+    },
+    {
+      "id": "T-SAFETY-001",
+      "description": "Create safety_config.py with IMMUTABLES/PROTECTED/MOVABLES classification",
+      "status": "DONE",
+      "priority": "CRITICAL",
+      "dependencies": [],
+      "completed_at": "2026-04-08T14:34:00-04:00",
+      "notes": "Phase 1 whitelist approach. Phase 2-3 will add dependency-aware migration."
+    },
+    {
+      "id": "T-SAFETY-002",
+      "description": "Create backup_index.py for pre-scan/pre-migration index backups",
+      "status": "DONE",
+      "priority": "CRITICAL",
+      "dependencies": [],
+      "completed_at": "2026-04-08T14:34:50-04:00",
+      "notes": "Backup done: vault/index_backup_20260408_143450 (81.66 MB)."
+    },
+    {
+      "id": "T-SAFETY-003",
+      "description": "Create scan_logger.py for structured logging of scan results and migration candidates",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dependencies": ["T-SAFETY-001"],
+      "completed_at": "2026-04-08T14:34:00-04:00",
+      "notes": "Outputs: JSON report, console summary, SYSTEM_NOTES updates."
+    },
+    {
+      "id": "T-SCAN-001",
+      "description": "Full system scan with safety logging across all scan roots",
+      "status": "TODO",
+      "priority": "CRITICAL",
+      "dependencies": ["T-SAFETY-001", "T-SAFETY-002", "T-SAFETY-003"],
+      "notes": "Must backup first (done). Catalog every file with safety classification. Data collection phase."
+    },
+    {
+      "id": "T-SCAN-002",
+      "description": "Analyze scan report — identify MOVABLES for cleanup, PROTECTED for review, UNCLASSIFIED for classification",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-SCAN-001"],
+      "notes": "Review JSON report, decide on migration actions."
+    },
+    {
+      "id": "T-SCAN-003",
+      "description": "Plan intelligent migration based on scan data — what to move, archive, delete",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-SCAN-002"],
+      "notes": "Phase 1: only MOVABLES. Phase 2-3: PROTECTED with dependency resolution."
+    },
+    {
+      "id": "T-PLAN-003",
+      "description": "Update project organization: optimize plan, docs, and implementation structure",
+      "status": "TODO",
+      "priority": "MEDIUM",
+      "dependencies": ["T-SCAN-001"],
+      "notes": "Use scan data to reorganize. Align with future intelligent migration goals."
+    },
+    {
+      "id": "T-INDEX-001",
+      "description": "Audit SKIP_DIRS contents — .kimi, .claude, .cline, .openclaw, .agents contain important context (plans, conversations, memory) currently excluded from indexing",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-SCAN-001"],
+      "notes": "Root cause: 158,713 files excluded by SKIP_DIRS, but .kimi alone has 113,252 files including plans, subagent context, memory. Need selective inclusion rules — not blanket skip. Create fine-grained SKIP_SUBDIRS patterns that exclude noise (venv, node_modules, caches) but include valuable content (plans, conversations, memory files)."
+    },
+    {
+      "id": "T-INDEX-002",
+      "description": "Re-index scannable files — 8,693 files pass SKIP checks but are not in vector index",
+      "status": "TODO",
+      "priority": "HIGH",
+      "dependencies": ["T-INDEX-001"],
+      "notes": "After fixing SKIP_DIRS rules, run python run.py scan --full to index all scannable files. Current index: 3,987. Target: ~12,000+ after SKIP_DIRS audit."
+    }
+  ],
+
+  "decisions": [
+    {
+      "id": "D-001",
+      "text": "Use Qdrant (not LanceDB) as vector store — serverless local mode with hybrid RRF fusion",
+      "date": "2026-04-08",
+      "rationale": "Already implemented, working. Hybrid search functional."
+    },
+    {
+      "id": "D-002",
+      "text": "Batch embedding (8 files/batch, sequential) instead of ThreadPoolExecutor to avoid VRAM OOM",
+      "date": "2026-04-08",
+      "rationale": "32-thread ThreadPoolExecutor caused 26.4GB VRAM allocation on 12GB GPU."
+    },
+    {
+      "id": "D-003",
+      "text": "Research-first protocol before non-trivial changes",
+      "date": "2026-04-08",
+      "rationale": "FlagReranker crash proved we enable features without validating dependencies."
+    },
+    {
+      "id": "D-004",
+      "text": "Flat task list for JSON orchestration (not nested hierarchical)",
+      "date": "2026-04-08",
+      "rationale": "Research confirmed: flat arrays are simpler for LLM parsing, easier to enforce priority order."
+    },
+    {
+      "id": "D-005",
+      "text": "Enable reranking via sentence_transformers.CrossEncoder, not FlagEmbedding",
+      "date": "2026-04-08",
+      "rationale": "FlagEmbedding doesn't compile on Python 3.14/Windows. CrossEncoder verified working."
+    },
+    {
+      "id": "D-006",
+      "text": "Local Ollama first — never rely on external free models (they rotate/deprecated)",
+      "date": "2026-04-08",
+      "rationale": "OpenRouter free tier limited to 50 requests/day. Free models return 404 frequently."
+    },
+    {
+      "id": "D-007",
+      "text": "gemma3:4b recommended as primary worker over gemma4-e4b until gemma4 patterns established",
+      "date": "2026-04-08",
+      "rationale": "Research: gemma4-e4b has 18/42 shared KV layers + SWA(512) — less reliable tool-calling."
+    },
+    {
+      "id": "D-008",
+      "text": "3-layer enforcement: input rails, pre-execution validation, mandatory search-first protocol",
+      "date": "2026-04-08",
+      "rationale": "Research paper: 'Simply instructing an agent to use files is insufficient; system must be architecturally constrained.'"
+    },
+    {
+      "id": "D-009",
+      "text": "Vault backups excluded from scanning — they duplicate current files and pollute search",
+      "date": "2026-04-08",
+      "rationale": "Vault copies appeared in top 5 search results for 'FileMind configuration scan roots'."
+    },
+    {
+      "id": "D-010",
+      "text": "Multi-model swarm architecture: Worker (gemma3:4b), Critic (qwen2.5:3b), Router (phi4:mini)",
+      "date": "2026-04-08",
+      "rationale": "Research paper recommended this architecture. Total VRAM ~10GB fits in 12GB."
+    },
+    {
+      "id": "D-011",
+      "text": "Smart chunking with file-type-aware dispatch (AST, structure, headers, layout)",
+      "date": "2026-04-08",
+      "rationale": "Research PDF 'Beyond Fixed-Size Chunks' provided complete blueprint. Rebuild: 3,877 files, 5,896 chunks, 0 errors."
+    },
+    {
+      "id": "D-012",
+      "text": "Qwen MUST NOT conduct deep research autonomously — generate research prompt and delegate to user's dedicated research agent",
+      "date": "2026-04-08",
+      "rationale": "User directive: Qwen is the coding expert, not the researcher. Deep research requires dedicated agent with proper methodology."
+    },
+    {
+      "id": "D-013",
+      "text": "Safety-first file organization: whitelist-based IMMUTABLES/PROTECTED/MOVABLES classification before any file movement",
+      "date": "2026-04-08",
+      "rationale": "Moving wrong files could break Ollama, Kimi, Claude, or other agents. User concern: 'critical code mistakenly gets categorized'."
+    },
+    {
+      "id": "D-014",
+      "text": "Future: Hierarchical Context-Directed Scanning (Phase 3+) — multi-pass scanning across drives, starting at top-level, using context to direct deeper scans",
+      "date": "2026-04-08",
+      "rationale": "User has apps/games scattered across multiple drives. Goal: intelligent discovery without blind one-by-one scanning. Method: Pass 1 (top-level folders) → Pass 2 (context-directed) → Pass 3 (file-level, prioritized by size/likelihood) → Pass 4 (isolate app root from generic system dirs)."
+    }
+  ]
+}

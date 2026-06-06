@@ -1,0 +1,99 @@
+{
+  "session_id": "20260408_143614",
+  "started_at": "2026-04-08T14:36:14.065633",
+  "ended_at": "2026-04-08T14:40:41.107144",
+  "duration_seconds": 267.041511,
+  "summary": {
+    "total_files": 8678,
+    "total_size_mb": 362.37,
+    "immutables_found": 16,
+    "protected_files": 3616,
+    "movable_candidates": 286,
+    "unclassified": 4760,
+    "duplicates_found": 0,
+    "unknown_category": 8678
+  },
+  "by_category": {
+    "unknown": 8678
+  },
+  "by_safety": {
+    "UNCLASSIFIED": 4760,
+    "PROTECTED": 3616,
+    "MOVABLE": 286,
+    "IMMUTABLE": 16
+  },
+  "top_15_extensions": {
+    ".md": 4244,
+    ".json": 1952,
+    ".sh": 866,
+    ".py": 863,
+    ".txt": 492,
+    ".ts": 84,
+    ".log": 56,
+    ".html": 48,
+    ".tsx": 18,
+    ".ps1": 14,
+    "(no ext)": 7,
+    ".js": 7,
+    ".bat": 5,
+    ".pdf": 5,
+    ".toml": 5
+  },
+  "movable_by_extension": {
+    ".json": 206,
+    ".txt": 67,
+    ".md": 11,
+    ".log": 2
+  },
+  "notes": [
+    "Scan roots: ['C:\\\\AI_STATION', 'C:\\\\Users\\\\amirk\\\\.kimi', 'C:/Users/amirk/Obsidian Vault', 'C:/Users/amirk/pc-focus', 'C:/Users/amirk/.cline', 'C:/Users/amirk/.claude', 'C:/Users/amirk/.openclaw', 'C:/Users/amirk/.agents']",
+    "Index extensions: 33 types"
+  ],
+  "errors": [
+    "Scan root not found: C:/Users/amirk/Obsidian Vault"
+  ],
+  "movable_sample": [
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D--claude-code\\01d5cc0b-04fe-4ff1-b8bd-5df99fe2a548\\subagents\\agent-ae2f87bde4e508391.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\a9cb18c2-bd76-4931-830e-e0afcf768710\\subagents\\agent-a8d8e3a8b4e20b22d.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\68e5ce64-6cb0-49b0-857f-f229a2b24e3d\\subagents\\agent-a04c8601ab774eedd.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\02968e40-9399-4e38-9d2c-10c8bb3608d3\\subagents\\agent-a0cc49de6272c1d7f.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\02968e40-9399-4e38-9d2c-10c8bb3608d3\\subagents\\agent-a678d27fd4defaac8.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\02968e40-9399-4e38-9d2c-10c8bb3608d3\\subagents\\agent-abb0c03adef71a639.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\D---openclaw\\02968e40-9399-4e38-9d2c-10c8bb3608d3\\subagents\\agent-ae02dd51601c4179f.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\f0067834-6c61-4254-8b7b-8c8ffc3511e3\\subagents\\agent-a41c6c29511df9b67.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\f0067834-6c61-4254-8b7b-8c8ffc3511e3\\subagents\\agent-ab5171a7e1b978958.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\e9a08776-a70d-41c6-9d69-6bc032496300\\subagents\\agent-a0e82a8ebb700e9d4.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\e9a08776-a70d-41c6-9d69-6bc032496300\\subagents\\agent-a5dbd91de123b9ad9.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\e9a08776-a70d-41c6-9d69-6bc032496300\\subagents\\agent-a74e7fd8213886545.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\94d76a34-2d0f-4839-a751-628ebe447115\\subagents\\agent-a1aae562968bb7d3c.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\94d76a34-2d0f-4839-a751-628ebe447115\\subagents\\agent-a35284e1a6cfb1aa0.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\94d76a34-2d0f-4839-a751-628ebe447115\\subagents\\agent-a9df5ee69ff472314.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\94d76a34-2d0f-4839-a751-628ebe447115\\subagents\\agent-aced7051848b0155c.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\84acaab6-8587-4e78-9484-cc9cd20621df\\subagents\\agent-a83a2085d5084bc33.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\84acaab6-8587-4e78-9484-cc9cd20621df\\subagents\\agent-afb9bcc5b777501a3.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\8097c944-c59b-4521-9b07-efab15e1df7f\\subagents\\agent-a6e4f3d2051f2c27a.meta.json",
+    "C:\\AI_STATION\\claude_config\\.claude\\projects\\C--Users-amirk--kimi\\8097c944-c59b-4521-9b07-efab15e1df7f\\subagents\\agent-a83fcfa63150d395a.meta.json"
+  ],
+  "protected_sample": [
+    "C:\\AI_STATION\\hub\\agents\\scripts\\boot_gemma4_e4b_hub.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_26b_fixed.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_e4b.bat",
+    "C:\\AI_STATION\\hub\\agents\\scripts\\start_server_e4b_fixed.bat",
+    "C:\\AI_STATION\\hub\\dashboard\\app\\globals.css",
+    "C:\\AI_STATION\\hub\\agents\\claude code\\dashboard\\app\\globals.css",
+    "C:\\AI_STATION\\filemind\\ui\\style.css",
+    "C:\\AI_STATION\\filemind\\ui\\src\\style.css",
+    "C:\\AI_STATION\\filemind\\.env",
+    "C:\\AI_STATION\\filemind-deep\\.env",
+    "C:\\AI_STATION\\hub\\bridge\\.env",
+    "C:\\AI_STATION\\hub\\memmachine\\.env",
+    "C:\\AI_STATION\\hub\\bridge\\cline_bridge\\.env",
+    "C:\\AI_STATION\\hub\\agents\\.codeium\\windsurf\\code_tracker\\active\\no_repo\\5a8658490d462a8e3fe0a5549a348266_api.env",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\canvas\\index.html",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.openclaw\\.openclaw\\canvas\\index.html",
+    "C:\\AI_STATION\\hub\\agents\\.codeium\\windsurf\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.claude\\skills\\deep-research\\templates\\mckinsey_report_template.html",
+    "C:\\AI_STATION\\hub\\agents\\.claude\\plugins\\plugins\\plugins\\marketplaces\\claude-plugins-official\\plugins\\skill-creator\\skills\\skill-creator\\assets\\eval_review.html"
+  ]
+}
